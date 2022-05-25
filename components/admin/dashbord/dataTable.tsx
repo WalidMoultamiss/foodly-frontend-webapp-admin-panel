@@ -1,7 +1,6 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import { GetAllProductsDashboardDocument } from "@/graphql/generated/graphql";
 import { useQuery } from "@apollo/client";
 
 const columns = [
@@ -11,29 +10,12 @@ const columns = [
 ];
 
 export const DataTable: any = () => {
-  const { data , loading , error} = useQuery(GetAllProductsDashboardDocument);
   const [products, setProducts] = useState<any[]>([]);
 
-  useEffect(() => {
-    if (data) {
-      console.log(data.getAllProducts);
-      setProducts(data.getAllProducts);
-    }
-  }, [data]);
 
   return (
     <>
-      {data ? (
-        <div style={{ height: 400, width: "100%" }}>
-          <DataGrid
-            rows={products}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
-          />
-        </div>
-      ) : null}
+      <h1>s</h1>
     </>
   );
 };

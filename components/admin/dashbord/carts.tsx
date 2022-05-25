@@ -1,16 +1,9 @@
-import { GetAllCartsDocument } from "@/graphql/generated/graphql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Carts = () => {
-  const { data, loading } = useQuery(GetAllCartsDocument);
   const [carts, setCarts] = useState<any[]>([]);
-
-  useEffect(() => {
-    // console.log(data.getAllCarts);
-    setCarts(data?.getAllCarts);
-  }, [data]);
 
   return (
     <div className=" py-2 overflow-x-auto max-w-[100%] ">
@@ -75,11 +68,6 @@ const Carts = () => {
               <th className="px-6 py-3 border-b-2 border-gray-300"></th>
             </tr>
           </thead>
-          {loading && (
-            <div className="w-full flex justify-center">
-              <CircularProgress />
-            </div>
-          )}
           <tbody className="bg-white">
             {carts?.map((cart, i) => (
               <tr key={i}>

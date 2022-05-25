@@ -1,4 +1,3 @@
-import { GetAllCartsDocument } from "@/graphql/generated/graphql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";

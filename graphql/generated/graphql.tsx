@@ -15,6 +15,44 @@ export type Scalars = {
   Float: number;
 };
 
+export type Admin = {
+  __typename?: 'Admin';
+  email?: Maybe<Scalars['String']>;
+  firstName?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['ID']>;
+  lastName?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  token?: Maybe<Scalars['String']>;
+};
+
+export type AdminInput = {
+  email?: InputMaybe<Scalars['String']>;
+  firstName?: InputMaybe<Scalars['String']>;
+  lastName?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+};
+
+export type Brand = {
+  __typename?: 'Brand';
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  image: Scalars['String'];
+  name: Scalars['String'];
+  productIds: Array<Maybe<Product>>;
+};
+
+export type BrandInput = {
+  description?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  productIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
+export type BrandProductInput = {
+  brandId?: InputMaybe<Scalars['ID']>;
+  productIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
 export type Cart = {
   __typename?: 'Cart';
   id: Scalars['ID'];
@@ -25,6 +63,33 @@ export type Cart = {
 export type CartInput = {
   orderIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   userId: Scalars['ID'];
+};
+
+export type Category = {
+  __typename?: 'Category';
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  image: Scalars['String'];
+  name: Scalars['String'];
+  productIds: Array<Maybe<Product>>;
+};
+
+export type CategoryInput = {
+  categoryId?: InputMaybe<Scalars['ID']>;
+  description?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  productIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
+export type CategoryProductInput = {
+  categoryId?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  productIds?: InputMaybe<Scalars['ID']>;
+};
+
+export type Images = {
+  __typename?: 'Images';
+  image?: Maybe<Scalars['String']>;
 };
 
 export type LoginInput = {
@@ -46,19 +111,48 @@ export type MenuInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addBrandToProduct?: Maybe<Product>;
+  addCategoryToProduct?: Maybe<Product>;
   addOrderToOrder?: Maybe<Order>;
+  addProductToCategory?: Maybe<Store>;
+  addStoreOptionToStore?: Maybe<StoreOptions>;
   addViewed?: Maybe<Product>;
+  createAdmin?: Maybe<SubAdmin>;
+  createBrand?: Maybe<Brand>;
   createCart?: Maybe<Cart>;
+  createCategory?: Maybe<Category>;
   createMenu?: Maybe<Menu>;
   createOrder?: Maybe<Order>;
   createProduct?: Maybe<Product>;
+  createStore?: Maybe<Store>;
+  createStoreOptions?: Maybe<StoreOptions>;
   deleteMenu?: Maybe<Menu>;
   deleteProduct?: Maybe<Product>;
+  deleteStore?: Maybe<Store>;
+  deleteStoreOptions?: Maybe<StoreOptions>;
   login?: Maybe<User>;
+  loginAdmin?: Maybe<Admin>;
+  loginSubAdmin?: Maybe<SubAdmin>;
   register?: Maybe<User>;
+  registerAdmin?: Maybe<Admin>;
+  registerSubAdmin?: Maybe<SubAdmin>;
+  updateCategory?: Maybe<Category>;
   updateMenu?: Maybe<Menu>;
   updateOrder?: Maybe<Order>;
   updateProduct?: Maybe<Product>;
+  updateStore?: Maybe<Store>;
+  updateStoreOptions?: Maybe<StoreOptions>;
+  updatebrand?: Maybe<Brand>;
+};
+
+
+export type MutationAddBrandToProductArgs = {
+  input?: InputMaybe<BrandProductInput>;
+};
+
+
+export type MutationAddCategoryToProductArgs = {
+  input?: InputMaybe<CategoryProductInput>;
 };
 
 
@@ -67,13 +161,38 @@ export type MutationAddOrderToOrderArgs = {
 };
 
 
+export type MutationAddProductToCategoryArgs = {
+  input?: InputMaybe<ProductCategoryInput>;
+};
+
+
+export type MutationAddStoreOptionToStoreArgs = {
+  input?: InputMaybe<AddOptionToStore>;
+};
+
+
 export type MutationAddViewedArgs = {
   id: Scalars['ID'];
 };
 
 
+export type MutationCreateAdminArgs = {
+  input?: InputMaybe<CreateAdminInput>;
+};
+
+
+export type MutationCreateBrandArgs = {
+  input?: InputMaybe<BrandInput>;
+};
+
+
 export type MutationCreateCartArgs = {
   input?: InputMaybe<CartInput>;
+};
+
+
+export type MutationCreateCategoryArgs = {
+  input?: InputMaybe<CategoryInput>;
 };
 
 
@@ -92,6 +211,16 @@ export type MutationCreateProductArgs = {
 };
 
 
+export type MutationCreateStoreArgs = {
+  input?: InputMaybe<StoreInput>;
+};
+
+
+export type MutationCreateStoreOptionsArgs = {
+  input?: InputMaybe<StoreOptionsInput>;
+};
+
+
 export type MutationDeleteMenuArgs = {
   id: Scalars['ID'];
 };
@@ -102,13 +231,49 @@ export type MutationDeleteProductArgs = {
 };
 
 
+export type MutationDeleteStoreArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationDeleteStoreOptionsArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationLoginArgs = {
+  input?: InputMaybe<LoginInput>;
+};
+
+
+export type MutationLoginAdminArgs = {
+  input?: InputMaybe<LoginInput>;
+};
+
+
+export type MutationLoginSubAdminArgs = {
   input?: InputMaybe<LoginInput>;
 };
 
 
 export type MutationRegisterArgs = {
   input?: InputMaybe<UserInput>;
+};
+
+
+export type MutationRegisterAdminArgs = {
+  input?: InputMaybe<AdminInput>;
+};
+
+
+export type MutationRegisterSubAdminArgs = {
+  input?: InputMaybe<SubAdminInput>;
+};
+
+
+export type MutationUpdateCategoryArgs = {
+  id: Scalars['ID'];
+  input?: InputMaybe<CategoryInput>;
 };
 
 
@@ -125,6 +290,24 @@ export type MutationUpdateOrderArgs = {
 export type MutationUpdateProductArgs = {
   id: Scalars['ID'];
   input?: InputMaybe<ProductInput>;
+};
+
+
+export type MutationUpdateStoreArgs = {
+  id: Scalars['ID'];
+  input?: InputMaybe<StoreInput>;
+};
+
+
+export type MutationUpdateStoreOptionsArgs = {
+  id: Scalars['ID'];
+  input?: InputMaybe<StoreOptionsInput>;
+};
+
+
+export type MutationUpdatebrandArgs = {
+  id: Scalars['ID'];
+  input?: InputMaybe<BrandInput>;
 };
 
 export type Order = {
@@ -152,6 +335,11 @@ export type Product = {
   status: Scalars['String'];
 };
 
+export type ProductCategoryInput = {
+  categoryId?: InputMaybe<Scalars['ID']>;
+  productIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+};
+
 export type ProductInput = {
   description: Scalars['String'];
   image: Array<InputMaybe<Scalars['String']>>;
@@ -165,21 +353,39 @@ export type ProductStoreInput = {
 
 export type Query = {
   __typename?: 'Query';
+  getAdminById?: Maybe<Admin>;
+  getAllAdmins: Array<Maybe<Admin>>;
+  getAllBrands?: Maybe<Array<Maybe<Brand>>>;
   getAllCarts?: Maybe<Array<Maybe<Cart>>>;
+  getAllCategories?: Maybe<Array<Maybe<Category>>>;
   getAllMenu?: Maybe<Array<Maybe<Menu>>>;
   getAllOrders?: Maybe<Array<Maybe<Order>>>;
   getAllProducts?: Maybe<Array<Maybe<Product>>>;
   getAllProductsWithPagination?: Maybe<Array<Maybe<Product>>>;
+  getAllStoreOptions?: Maybe<Array<Maybe<StoreOptions>>>;
+  getAllStores?: Maybe<Array<Maybe<Store>>>;
+  getAllSubAdmins: Array<Maybe<SubAdmin>>;
   getAllUsers?: Maybe<Array<Maybe<User>>>;
+  getBrandById?: Maybe<Brand>;
   getCartById?: Maybe<Cart>;
+  getCategoryById?: Maybe<Category>;
   getLastCartByUserId?: Maybe<Cart>;
   getLastOrderByUserId?: Maybe<Order>;
   getMenuById?: Maybe<Menu>;
   getOrderById?: Maybe<Order>;
   getProductById?: Maybe<Product>;
   getProductByUuid?: Maybe<Product>;
+  getStoreById?: Maybe<Store>;
+  getStoreOptionsById?: Maybe<StoreOptions>;
+  getStoreOptionsByStoreId?: Maybe<StoreOptions>;
+  getSubAdminById?: Maybe<SubAdmin>;
   getUserById?: Maybe<User>;
   hello?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGetAdminByIdArgs = {
+  id: Scalars['ID'];
 };
 
 
@@ -188,8 +394,18 @@ export type QueryGetAllProductsWithPaginationArgs = {
 };
 
 
+export type QueryGetBrandByIdArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type QueryGetCartByIdArgs = {
   id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryGetCategoryByIdArgs = {
+  id: Scalars['ID'];
 };
 
 
@@ -223,6 +439,26 @@ export type QueryGetProductByUuidArgs = {
 };
 
 
+export type QueryGetStoreByIdArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryGetStoreOptionsByIdArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryGetStoreOptionsByStoreIdArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryGetSubAdminByIdArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type QueryGetUserByIdArgs = {
   id: Scalars['ID'];
 };
@@ -231,6 +467,74 @@ export enum Role {
   Seller = 'SELLER',
   User = 'USER'
 }
+
+export type Store = {
+  __typename?: 'Store';
+  address: Scalars['String'];
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  image: Scalars['String'];
+  name: Scalars['String'];
+  options: StoreOptions;
+  phone: Scalars['String'];
+  productIds: Array<Maybe<Product>>;
+  userId: User;
+};
+
+export type StoreInput = {
+  address?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  phone?: InputMaybe<Scalars['String']>;
+  productIds?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  userId?: InputMaybe<Scalars['ID']>;
+};
+
+export type StoreOptions = {
+  __typename?: 'StoreOptions';
+  bestProducts: Scalars['Boolean'];
+  bgColor: Scalars['String'];
+  id: Scalars['ID'];
+  ourBrands: Scalars['Boolean'];
+  popup: Scalars['Boolean'];
+  popupImage: Scalars['String'];
+  primaryColor: Scalars['String'];
+  slider: Scalars['Boolean'];
+  slider_image: Array<Maybe<Scalars['String']>>;
+  storeId: Scalars['String'];
+  whatsapp: Scalars['Boolean'];
+};
+
+export type StoreOptionsInput = {
+  bestProducts?: InputMaybe<Scalars['Boolean']>;
+  bgColor?: InputMaybe<Scalars['String']>;
+  ourBrands?: InputMaybe<Scalars['Boolean']>;
+  popup?: InputMaybe<Scalars['Boolean']>;
+  popupImage?: InputMaybe<Scalars['String']>;
+  primaryColor?: InputMaybe<Scalars['String']>;
+  slider?: InputMaybe<Scalars['Boolean']>;
+  slider_image?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  storeId?: InputMaybe<Scalars['String']>;
+  whatsapp?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type SubAdmin = {
+  __typename?: 'SubAdmin';
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  id: Scalars['ID'];
+  lastName: Scalars['String'];
+  password: Scalars['String'];
+  token: Scalars['String'];
+};
+
+export type SubAdminInput = {
+  email?: InputMaybe<Scalars['String']>;
+  firstName?: InputMaybe<Scalars['String']>;
+  lastName?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+};
 
 export type Subscription = {
   __typename?: 'Subscription';
@@ -262,6 +566,18 @@ export type UserInput = {
   lastName?: InputMaybe<Scalars['String']>;
   password?: InputMaybe<Scalars['String']>;
   role?: InputMaybe<Role>;
+};
+
+export type AddOptionToStore = {
+  optionId?: InputMaybe<Scalars['String']>;
+  storeId?: InputMaybe<Scalars['String']>;
+};
+
+export type CreateAdminInput = {
+  email?: InputMaybe<Scalars['String']>;
+  firstName?: InputMaybe<Scalars['String']>;
+  lastName?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
 };
 
 export type Pagination = {

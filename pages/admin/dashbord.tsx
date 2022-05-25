@@ -28,7 +28,6 @@ import Orders from "@/components/admin/dashbord/orders";
 import Carts from "@/components/admin/dashbord/carts";
 import { PrimaryBtn } from "@/components/PrimaryBtn";
 import ListUser from "@/components/admin/dashbord/listUser";
-import Product from "@/components/admin/dashbord/products";
 import DataTable from "@/components/admin/dashbord/dataTable";
 
 const drawerWidth = 240;
@@ -213,7 +212,6 @@ const Products: NextPage = () => {
         {table === "Orders" && <Orders />}
         {table === "Carts" && <Carts />}
         {table === "ListUser" && <ListUser />}
-        {table === "Product" && <Product />}
       </Box>
     </Box>
   );

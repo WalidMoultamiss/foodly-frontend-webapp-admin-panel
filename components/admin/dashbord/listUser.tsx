@@ -1,25 +1,13 @@
-import { GetAllUsersDocument } from "@/graphql/generated/graphql";
 import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Liste = () => {
-  const { data, loading } = useQuery(GetAllUsersDocument);
   const [users, setUsers] = useState<any[]>([]);
-
-  useEffect(() => {
-    // console.log(data.getAllUsers);
-    setUsers(data?.getAllUsers);
-  }, [data]);
 
   return (
     <div>
       <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-        {loading && (
-          <div className="w-full flex justify-center">
-            <CircularProgress />
-          </div>
-        )}
         <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
           <div className="flex items-center justify-between mb-4">
             <div className="flex-shrink-0">

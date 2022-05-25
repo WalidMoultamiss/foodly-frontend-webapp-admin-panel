@@ -1,15 +1,4 @@
-import type { NextPage, GetServerSideProps } from "next";
-// import {
-  
-// } from "@/graphql/generated/graphql";
-import { HomeComp } from "@/components/Home";
-import { LoginPopup } from "@/components/Login";
-import { useEffect, useState } from "react";
-import Header from "@/components/Header";
-import { useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
-import { SubscriptionComp } from "@/components/Subscription";
-import { AnimatePresence } from "framer-motion";
+import type { NextPage } from "next";
 import Link from "next/link";
 
 export type Props = {};

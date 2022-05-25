@@ -21,7 +21,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import LocalAtmTwoToneIcon from "@mui/icons-material/LocalAtmTwoTone";
 import DashboardProducts from "@/components/DashboardProducts";
 import { useRouter } from "next/router";
-import { GetStoreByIdDocument } from "@/graphql/generated/graphql";
 import { useQuery } from "@apollo/client";
 import { CircularProgress } from "@mui/material";
 import Cards from "@/components/admin/dashbord/cards";

@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import { useEffect } from "react";
-import { LoginDocument, useLoginMutation } from "@/graphql/generated/graphql";
 import { gql, useMutation } from "@apollo/client";
 import Toaster from "../Toaster";
 import { motion } from "framer-motion";
@@ -19,39 +18,14 @@ export const LoginPopup = ({
 }) => {
   const [email, setEmail] = useState("walidmoultamis@gmail.com");
   const [password, setPassword] = useState("123");
-  const [login, { data, loading, error }] = useLoginMutation();
   const [toaster, setToaster] = useState(false);
   const [toasterText, setToasterText] = useState("");
 
-  const handleLogin = async () => {
-    await login({
-      variables: {
-        input: {
-          email,
-          password,
-        },
-      },
-    });
-  };
+
 
   const Router = useRouter();
 
-  useEffect(() => {
-    try {
-      if (data?.login) {
-        console.log("login success", data.login);
-        setToasterText("login success");
-        //set user and token in local storage
-        localStorage.setItem("user", JSON.stringify(data.login));
-        setToaster(true);
-        Router.push(`/Personalise/store/${data?.login?.store?.id}`);
-      }
-    } catch (error) {
-      console.log(error);
-      setToasterText("login failed");
-      setToaster(true);
-    }
-  }, [data]);
+
 
   return (
     <div className="fixed z-[100] top-0 left-0 w-full h-screen bg-black bg-opacity-20 backdrop-blur-md">
@@ -78,11 +52,11 @@ export const LoginPopup = ({
             ></div>
             <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
               <h3 className="pt-4 text-2xl text-center">Welcome Back!</h3>
-              {error && (
+              {/* {error && (
                 <div className="text-red-500 text-center">
                   oh no! something went wrong
                 </div>
-              )}
+              )} */}
               <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                 <div className="mb-4">
                   <label
@@ -131,7 +105,7 @@ export const LoginPopup = ({
                   <button
                     className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                     type="button"
-                    onClick={handleLogin}
+
                   >
                     Sign In
                   </button>

@@ -156,11 +156,6 @@ const New = () => {
           </>
         ))}
       </div>
-      <div className="">
-        {(productIds || [])?.map((_, idx) => (
-          <h3 key={idx}>{_}</h3>
-        ))}
-      </div>
     </div>
   );
 };
